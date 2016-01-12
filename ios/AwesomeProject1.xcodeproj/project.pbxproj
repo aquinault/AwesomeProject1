@@ -25,11 +25,13 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		C854246F1C32403F00C24DBF /* MCFileWriterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854246D1C32403F00C24DBF /* MCFileWriterUtil.swift */; };
 		C85424701C32403F00C24DBF /* MCFileWriterUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C854246E1C32403F00C24DBF /* MCFileWriterUtil.m */; };
+		C85424731C32D1C100C24DBF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C85424721C32D1C100C24DBF /* Images.xcassets */; };
 		C8973AFD1BC1656C00EA4B98 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8973AF31BC164E700EA4B98 /* libRCTCamera.a */; };
 		C8C24E261C2AE38B004E4056 /* TSLocationManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C24E251C2AE38B004E4056 /* TSLocationManager.framework */; };
 		C8C24E2B1C2AE809004E4056 /* libRNBackgroundGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C24E221C2AE2E6004E4056 /* libRNBackgroundGeolocation.a */; };
 		C8C24E2E1C2AF8D3004E4056 /* SomeString.m in Sources */ = {isa = PBXBuildFile; fileRef = C8C24E2D1C2AF8D3004E4056 /* SomeString.m */; };
 		C8C24E321C2BEF97004E4056 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C24E311C2BEF97004E4056 /* libsqlite3.tbd */; };
+		C8E3AE4C1C33DE0A00B32F34 /* Images-3.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8E3AE4B1C33DE0A00B32F34 /* Images-3.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,12 +160,14 @@
 		C854246D1C32403F00C24DBF /* MCFileWriterUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MCFileWriterUtil.swift; sourceTree = "<group>"; };
 		C854246E1C32403F00C24DBF /* MCFileWriterUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCFileWriterUtil.m; sourceTree = "<group>"; };
 		C85424711C3240AD00C24DBF /* CustomSwiftComponent-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CustomSwiftComponent-Bridging-Header.h"; sourceTree = "<group>"; };
+		C85424721C32D1C100C24DBF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AwesomeProject1/Images.xcassets; sourceTree = "<group>"; };
 		C8973AED1BC164E700EA4B98 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		C8C24E111C2AE2E6004E4056 /* RNBackgroundGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNBackgroundGeolocation.xcodeproj; path = "../node_modules/react-native-background-geolocation/RNBackgroundGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		C8C24E251C2AE38B004E4056 /* TSLocationManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TSLocationManager.framework; path = "../node_modules/react-native-background-geolocation/RNBackgroundGeolocation/TSLocationManager.framework"; sourceTree = "<group>"; };
 		C8C24E2C1C2AF8D3004E4056 /* SomeString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomeString.h; sourceTree = "<group>"; };
 		C8C24E2D1C2AF8D3004E4056 /* SomeString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomeString.m; sourceTree = "<group>"; };
 		C8C24E311C2BEF97004E4056 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		C8E3AE4B1C33DE0A00B32F34 /* Images-3.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images-3.xcassets"; path = "AwesomeProject1/Images-3.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +285,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				C85424721C32D1C100C24DBF /* Images.xcassets */,
+				C8E3AE4B1C33DE0A00B32F34 /* Images-3.xcassets */,
 			);
 			name = AwesomeProject1;
 			sourceTree = "<group>";
@@ -612,6 +618,8 @@
 			files = (
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				C8E3AE4C1C33DE0A00B32F34 /* Images-3.xcassets in Resources */,
+				C85424731C32D1C100C24DBF /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,6 +711,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -730,6 +739,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -8,6 +8,7 @@ var {
   Text,
   TouchableOpacity,
   VibrationIOS,
+  AlertIOS
 } = React;
 
 var Camera = require('react-native-camera');
@@ -25,14 +26,13 @@ var QRCodeScreen = React.createClass({
     return {
       cancelButtonVisible: false,
       cancelButtonTitle: 'Cancel',
-      barCodeFlag: true,
     };
   },
 
   _onPressCancel: function() {
     var $this = this;
     requestAnimationFrame(function() {
-      $this.props.navigator.pop();
+      //$this.props.navigator.pop();
       if ($this.props.onCancel) {
         $this.props.onCancel();
       }
@@ -42,20 +42,32 @@ var QRCodeScreen = React.createClass({
   _onBarCodeRead: function(result) {
     var $this = this;
 
-    if (this.props.barCodeFlag) {
-      this.props.barCodeFlag = false;
+    if (this.barCodeFlag) {
+      this.barCodeFlag = false;
 
       setTimeout(function() {
         VibrationIOS.vibrate();
-        $this.props.navigator.pop();
-        $this.props.onSucess(result.data);
+        //$this.props.navigator.pop();
+
+        AlertIOS.alert(
+          'Hello World',
+          null,
+          [
+            {text: 'Confirm' + result.data, onPress: (text) => $this.props.onSucess(result.data)},
+            {text: 'Cancel', onPress: (text) => $this.barCodeFlag = true}
+          ],
+          'default'
+        )
+
+        //$this.props.onSucess(result.data);
       }, 1000);
     }
   },
 
   render: function() {
     var cancelButton = null;
-
+    this.barCodeFlag = true;
+    
     if (this.props.cancelButtonVisible) {
       cancelButton = <CancelButton onPress={this._onPressCancel} title={this.props.cancelButtonTitle} />;
     }

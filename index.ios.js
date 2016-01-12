@@ -34,10 +34,12 @@ var Annonces = require('./annonces');
 
 var CustomSwiftComponent = require('./CustomSwiftComponent');
 var Component1 = require('./component1');
+var ListViewHistory = require('./listViewHistory');
 
-
-//var QRCode = require('./QRCode');
 var QRCodeScreen = require('./QRCodeScreen');
+
+var NoteStore = require('./stores/NoteStore');
+var NoteActions = require('./actions/NoteActions');
 
 var styles2 = StyleSheet.create({
   container: {
@@ -51,154 +53,43 @@ var styles2 = StyleSheet.create({
   }
 });
 
-var Index = React.createClass({
-
-  render: function() {
-    return (
-      <View style={styles2.contentContainer}>
-        <TouchableOpacity onPress={this._onPressQRCode}>
-          <Text>Read QRCode</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  },
-
-  _onPressQRCode: function() {
-    this.props.navigator.push({
-      component: QRCodeScreen,
-      title: 'QRCode',
-      passProps: {
-        onSucess: this._onSucess,
-      },
-    });
-  },
-
-  _onSucess: function(result) {
-    console.log(result);
-  },
-
-});
-
-//var Component1 = require('./component1');
-
-
-/*
-var TabBarExample = React.createClass({
-  statics: {
-    title: '<TabBarIOS>',
-    description: 'Tab-based navigation.',
-  },
-  
-  displayName: 'TabBarExample',
-
-  getInitialState: function() {
-    return {
-      selectedTab: 'redTab',
-      notifCount: 0,
-      presses: 0,
-    };
-  },
-
-  _renderContent: function(color: string, pageText: string, num?: number) {
-    return (
-      <View style={[styles.tabContent, {backgroundColor: color}]}>
-        <Text style={styles.tabText}>{pageText}</Text>
-        <Text style={styles.tabText}>{num} re-renders of the {pageText}</Text>
-      </View>
-    );
-  },
-
-  render: function() {
-    return (
-      <TabBarIOS
-        tintColor="white"
-        barTintColor="darkslateblue">
-        <TabBarIOS.Item
-          title="Blue Tab"
-          icon={{uri: base64Icon, scale: 3}}
-          selected={this.state.selectedTab === 'blueTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'blueTab',
-            });
-          }}>
-          {this._renderContent('#414A8C', 'Blue Tab')}
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
-          systemIcon="history"
-          badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
-          selected={this.state.selectedTab === 'redTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'redTab',
-              notifCount: this.state.notifCount + 1,
-            });
-          }}>
-          {this._renderContent('#783E33', 'Red Tab', this.state.notifCount)}
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
-          //icon={require('./flux.png')}
-          title="More"
-          selected={this.state.selectedTab === 'greenTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'greenTab',
-              presses: this.state.presses + 1
-            });
-          }}>
-          {this._renderContent('#21551C', 'Green Tab', this.state.presses)}
-        </TabBarIOS.Item>
-      </TabBarIOS>
-    );
-  },
-
-});
-*/
-
 var AwesomeProject1 = React.createClass({
   getInitialState: function() {
     return {
-      /*dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      }),*/
       loaded: false,
       selectedTab: 'redTab',
       notifCount: 0,
       presses: 0,
-
+      notes: NoteStore.getNotes()
     };
   },
-  componentDidMount: function() {
-    //this.fetchData();
+  onChange: function(notes) {
+    this.setState({
+      notes: notes
+    });
   },
-  /*fetchData: function() {
-    fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
-          loaded: true,
-        });
-      })
-      .done();
-  },*/
+  componentDidMount: function() {
+    this.unsubscribe = NoteStore.listen(this.onChange);
+  },
+  componentWillUnmount: function() {
+    this.unsubscribe();
+  },
+
+  _onSucess: function(result) {
+    console.log(result);
+
+    NoteActions.createNote({ _id: Date.now(), text: result });
+    //onChange({title: 'title1'});
+
+
+    this.setState({
+      selectedTab: 'redTab',
+      notifCount: this.state.notifCount + 1,
+      historyData: []
+    });
+
+  },
   render: function() {
-    /*
-    if (!this.state.loaded) {
-      return this.renderLoadingView();
-    }
-    */
-
-
-/*
-              <ListView
-                dataSource={this.state.dataSource}
-                renderRow={this.renderMovie}
-                style={styles.listView}
-              />
-              */
-              //<Movies />
-
     return (
         <TabBarIOS
             tintColor="white"
@@ -232,6 +123,19 @@ var AwesomeProject1 = React.createClass({
             <TabBarIOS.Item
               systemIcon="history"
               badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
+              selected={this.state.selectedTab === 'historyTab'}
+              onPress={() => {
+                this.setState({
+                  selectedTab: 'historyTab',
+                  notifCount: this.state.notifCount + 1
+                });
+              }}>
+              <ListViewHistory></ListViewHistory>
+            </TabBarIOS.Item>
+
+            <TabBarIOS.Item
+              systemIcon="favorites"
+              badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
               selected={this.state.selectedTab === 'redTab'}
               onPress={() => {
                 this.setState({
@@ -249,38 +153,19 @@ var AwesomeProject1 = React.createClass({
               onPress={() => {
                 this.setState({
                   selectedTab: 'greenTab',
-                  presses: this.state.presses + 1
+                  presses: this.state.presses + 1,                  
                 });
               }}>
-              <QRCodeScreen />
+              
+              <QRCodeScreen onSucess={this._onSucess}>
+              </QRCodeScreen>
+
+
             </TabBarIOS.Item>
           </TabBarIOS>   
    
     );
-  },/*
-  renderLoadingView: function() {
-    return (
-      <View style={styles.container}>
-        <Text>
-          Loading movies...
-        </Text>
-      </View>
-    );
   },
-  renderMovie: function(movie) {
-    return (
-      <View style={styles.container}>
-        <Image
-          source={{uri: movie.posters.thumbnail}}
-          style={styles.thumbnail}
-        />
-        <View style={styles.rightContainer}>
-          <Text style={styles.title}>{movie.title}</Text>
-          <Text style={styles.year}>{movie.year}</Text>
-        </View>
-      </View>
-    );
-  },*/
 });
 
 
