@@ -14,7 +14,7 @@ var {
   View,
 } = React;
 
-var REQUEST_URL = 'http://192.168.99.100:8080/annonces/';
+var REQUEST_URL = 'http://188.166.103.138:8080/annonces/';
 
 
 
